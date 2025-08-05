@@ -1,3 +1,37 @@
 # Default ignored files
 /shelf/
 /workspace.xml
+# Built files
+/build/
+/app/build/
+/.gradle/
+/captures/
+/.externalNativeBuild/
+
+# IDE and OS files
+.idea/
+/*.iml
+*.apk
+*.ap_
+*.dex
+*.class
+*.log
+*.cxx/
+*.DS_Store
+/local.properties
+
+# NDK & Misc
+.cxx/
+*.so
+
+# Keystore files
+*.jks
+*.keystore
+
+# Gradle
+.gradle
+.gradle-cache/
+
+# Sign-in config
+**/signing.properties
+
