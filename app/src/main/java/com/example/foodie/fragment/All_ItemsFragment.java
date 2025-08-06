@@ -19,7 +19,7 @@ import com.example.foodie.database.MyDatabase;
 
 import java.util.List;
 
-public class FoodFragment extends Fragment {
+public class All_ItemsFragment extends Fragment {
 
     private int tableNumber; // 👈 Table number passed from MenuActivity
 
@@ -37,7 +37,7 @@ public class FoodFragment extends Fragment {
 
         // Step 2: Fetch menu items (food) from DB
         MyDatabase db = new MyDatabase(requireContext());
-        List<MenuItem> foodMenu = db.getItemsByCategory("food");
+        List<MenuItem> AllItems = db.getAllItems();
 
         // OPTIONAL: If you want to hide already-ordered items, you can add filtering here
         // foodMenu = db.getAvailableMenuItems("food", tableNumber); // Implement this if needed
@@ -45,7 +45,7 @@ public class FoodFragment extends Fragment {
         // Step 3: Setup RecyclerView
         RecyclerView recyclerView = view.findViewById(R.id.recycler_menu);
         recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
-        recyclerView.setAdapter(new MenuAdapter(foodMenu, requireContext(), tableNumber)); // 👈 pass tableNumber
+        recyclerView.setAdapter(new MenuAdapter(AllItems, requireContext(), tableNumber)); // 👈 pass tableNumber
 
         return view;
     }

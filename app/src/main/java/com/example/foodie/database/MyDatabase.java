@@ -147,6 +147,22 @@ public class MyDatabase extends SQLiteOpenHelper {
         return list;
     }
 
+    //get all items
+    public List<MenuItem> getAllItems(){
+        List<MenuItem> list = new ArrayList<>();
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM "+MENU_TABLE,null);
+        if (cursor.moveToNext()){
+            do {
+                String name = cursor.getString(cursor.getColumnIndexOrThrow(MENU_NAME));
+                double price = cursor.getDouble(cursor.getColumnIndexOrThrow(MENU_PRICE));
+                list.add(new MenuItem(name,price));
+            }while(cursor.moveToNext());
+        }
+        cursor.close();
+        return list;
+    }
+
 
     // In MyDatabase.java
 

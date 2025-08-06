@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.foodie.fragment.All_ItemsFragment;
 import com.example.foodie.fragment.DrinkFragment;
 import com.example.foodie.fragment.FoodFragment;
 import com.example.foodie.fragment.SmokeFragment;
@@ -39,7 +40,7 @@ public class MenuActivity extends AppCompatActivity {
 
 
         // Load FoodFragment with table info
-        loadFragment(new FoodFragment());
+        loadFragment(new All_ItemsFragment());
 
         findViewById(R.id.btn_food).setOnClickListener(v -> loadFragment(new FoodFragment()));
         findViewById(R.id.btn_drink).setOnClickListener(v -> loadFragment(new DrinkFragment()));
