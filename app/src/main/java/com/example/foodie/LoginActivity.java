@@ -7,6 +7,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.foodie.UDP.MulticastReceiver;
+import com.example.foodie.UDP.UdpMulticastSender;
 import com.example.foodie.database.MyDatabase;
 
 public class LoginActivity extends Activity {
@@ -23,6 +25,9 @@ MyDatabase db;
         password = findViewById(R.id.password);
         loginBtn = findViewById(R.id.login_btn);
         db = new MyDatabase(this);
+
+        new MulticastReceiver(this).start();
+        new UdpMulticastSender().sendTableStatus(this);
 
         loginBtn.setOnClickListener(v -> {
             String user = username.getText().toString().trim();

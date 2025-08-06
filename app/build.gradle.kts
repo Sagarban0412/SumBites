@@ -35,11 +35,13 @@ dependencies {
 
     implementation(libs.appcompat)
     implementation(libs.material)
+    implementation(libs.play.services.analytics.impl)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
     implementation (libs.volley)
     implementation("androidx.core:core:1.16.0")
+    implementation(libs.gson)
 
 
 }

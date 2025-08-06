@@ -12,19 +12,64 @@
         android:layout_height="match_parent"
         android:gravity="center"
         android:layout_gravity="center">
-
-        <!-- Dynamically added items will appear here -->
-
         <TextView
-            android:id="@+id/cart_total"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Total: rs. 0.00"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:layout_marginTop="16dp"
-            android:textColor="#000000"
-            android:gravity="center" />
+            android:text="Table Name"
+            android:textSize="30dp"
+            android:id="@+id/table"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/colunm"
+            android:orientation="horizontal"
+            android:weightSum="4"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Name"
+                android:layout_weight="1"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:layout_gravity="center"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Quantity"
+                android:layout_weight="1"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:layout_gravity="center"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rate"
+                android:layout_weight="1"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:layout_gravity="center"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Total"
+                android:layout_weight="1"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:layout_gravity="center"
+                />
+        </LinearLayout>
+      <ListView
+          android:layout_width="match_parent"
+          android:layout_height="400dp"
+          android:id="@+id/cartList"
+
+          />
 
         <!-- Submit Button -->
         <Button
@@ -38,6 +83,5 @@
             android:layout_gravity="center"
             android:elevation="6dp"
             android:background="@drawable/rounded_button" />
-
     </LinearLayout>
 </ScrollView>

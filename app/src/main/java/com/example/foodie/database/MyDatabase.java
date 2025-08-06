@@ -23,6 +23,7 @@ public class MyDatabase extends SQLiteOpenHelper {
     public static final String COLUMN_NAME = "name";
     public static final String COLUMN_QUANTITY = "quantity";
     public static final String COLUMN_PRICE = "price";
+    public static final String COLUMN_CATEGORY = "category";
     public static final String COLUMN_TABLE_NUMBER = "table_number";
 
     // waiters table
@@ -110,6 +111,16 @@ public class MyDatabase extends SQLiteOpenHelper {
         cv.put(COLUMN_TABLE_NUMBER, tableNumber);
         db.insert(ORDER_TABLE, null, cv);
     }
+
+    public void remoteInsertItem(String name, double price,String category) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(COLUMN_NAME, name);
+        cv.put(COLUMN_PRICE, price);
+        cv.put(COLUMN_CATEGORY,category);
+        db.insert(MENU_TABLE, null, cv);
+    }
+
 
     // Get all order items
     public static Cursor selectData(Context context) {
@@ -245,5 +256,16 @@ public class MyDatabase extends SQLiteOpenHelper {
         return list;
     }
 
+    public List<Integer> getTablesInfo() {
+        List<Integer> list = new ArrayList<>();
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT table_number FROM table_status WHERE order_status = 1", null);
+        while (cursor.moveToNext()) {
+            int id = cursor.getInt(0);  // only one column selected, so index 0
+            list.add(id);               // add table_number to list
+        }
+        cursor.close();
+        return list;
+    }
 
 }

@@ -132,6 +132,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -143,13 +144,15 @@ import com.example.foodie.MenuItem;
 import com.example.foodie.CartManager;
 import com.example.foodie.JsonExporter;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class CartActivity extends Activity {
     private static final String CHANNEL_ID = "order_channel";
 
     private LinearLayout cartContainer;
-    private TextView totalText;
+    private TextView txt;
     private Button placeOrder;
     private int tableNumber;
     private MyDatabase myDatabase;
@@ -163,11 +166,13 @@ public class CartActivity extends Activity {
         createNotificationChannel();
 
         cartContainer = findViewById(R.id.cart_container);
-        totalText = findViewById(R.id.cart_total);
         placeOrder = findViewById(R.id.place_order);
+        txt = findViewById(R.id.table);
+        ListView cartList = findViewById(R.id.cartList);
 
         tableNumber = getIntent().getIntExtra("table_number", -1);
-        Log.d("table_numberCart", "Received table: " + tableNumber);
+        txt.setText("Table"+tableNumber);
+//        Log.d("table_numberCart", "Received table: " + tableNumber);
 
         if (tableNumber == -1) {
             Toast.makeText(this, "Invalid table number", Toast.LENGTH_SHORT).show();
@@ -178,19 +183,48 @@ public class CartActivity extends Activity {
         myDatabase = new MyDatabase(this);
         List<MenuItem> cartItems = CartManager.getInstance().getCartItems();
 
-        double total = 0;
-        for (MenuItem item : cartItems) {
-            // Display each item
-            TextView itemTextView = new TextView(this);
-            String itemText = item.getName() + " x " + item.getQuantity() + " - Rs. " + (item.getQuantity() * item.getPrice());
-            itemTextView.setText(itemText);
-            itemTextView.setTextSize(18);
-            cartContainer.addView(itemTextView);
+        ArrayList<String> namesList = new ArrayList<>();
+        ArrayList<Integer> qtysList = new ArrayList<>();
+        ArrayList<Integer> ratesList = new ArrayList<>();
+        ArrayList<Integer> totalsList = new ArrayList<>();
 
-            total += item.getPrice() * item.getQuantity();
+        for (MenuItem item : cartItems) {
+            TextView itemTextView = new TextView(this);
+
+            String name = item.getName();
+            int qty = item.getQuantity();
+            int rate = (int) item.getPrice();
+            int total = qty * rate;
+
+            // Add to lists
+            namesList.add(name);
+            qtysList.add(qty);
+            ratesList.add(rate);
+            totalsList.add(total);
+
+            cartContainer.addView(itemTextView);
         }
 
-        totalText.setText("Total: Rs. " + total + " (Table " + tableNumber + ")");
+// Convert ArrayLists to arrays
+        String[] names = namesList.toArray(new String[0]);
+        int[] qtys = null;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            qtys = qtysList.stream().mapToInt(i -> i).toArray();
+        }
+        int[] rates = null;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            rates = ratesList.stream().mapToInt(i -> i).toArray();
+        }
+        int[] totals = null;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            totals = totalsList.stream().mapToInt(i -> i).toArray();
+        }
+
+        Log.d("names", "Names: " + Arrays.toString(names));
+
+// Now pass to your adapter
+        MyListAdapter adapter = new MyListAdapter(this, names, qtys, rates, totals);
+        cartList.setAdapter(adapter);
 
         placeOrder.setOnClickListener(e -> {
             if (cartItems.isEmpty()) {
