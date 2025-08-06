@@ -12,6 +12,7 @@ import com.example.foodie.TableModel;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 public class MyDatabase extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "SumBytes";
@@ -121,6 +122,67 @@ public class MyDatabase extends SQLiteOpenHelper {
         db.insert(MENU_TABLE, null, cv);
     }
 
+    public void remoteTableInsert(String tname, int tid) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put("table_number", tid);
+        cv.put("table_name", tname);
+
+        long result = db.insert("tables", null, cv);
+
+        if (result == -1) {
+            Log.e("DBinfofai", "Failed to insert table: " + tname);
+        } else {
+            Log.d("DBinfosuc", "Inserted table: " + tname + " with ID: " + tid);
+        }
+    }
+
+    public boolean isTableExists(int tid) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT 1 FROM tables WHERE table_number = ?", new String[]{String.valueOf(tid)});
+        boolean exists = cursor.moveToFirst();
+        cursor.close();
+        return exists;
+    }
+
+    public void updateTableName(int tid, String newName) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put("table_name", newName);
+        db.update("tables", cv, "table_number = ?", new String[]{String.valueOf(tid)});
+    }
+
+    public void deleteTablesNotIn(Set<Integer> validIds) {
+        if (validIds.isEmpty()) return;
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        StringBuilder placeholders = new StringBuilder();
+        String[] args = new String[validIds.size()];
+        int i = 0;
+        for (int id : validIds) {
+            placeholders.append("?,");
+            args[i++] = String.valueOf(id);
+        }
+        placeholders.setLength(placeholders.length() - 1); // Remove last comma
+
+        String sql = "DELETE FROM tables WHERE table_number NOT IN (" + placeholders + ")";
+        db.execSQL(sql, args);
+    }
+
+    public void insertOccupied(int tableNumber, boolean isOccupied) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put("table_number", tableNumber); // fixed column name
+
+        int status = isOccupied ? 1 : 0;
+        cv.put("order_status", status);
+
+        db.insertWithOnConflict("table_status", null, cv, SQLiteDatabase.CONFLICT_REPLACE);
+    }
+
+
+
 
     // Get all order items
     public static Cursor selectData(Context context) {
@@ -226,6 +288,17 @@ public class MyDatabase extends SQLiteOpenHelper {
             db.insertWithOnConflict("tables", null, values, SQLiteDatabase.CONFLICT_IGNORE);
         }
     }
+
+//    public void mulaTableInsert() {
+//        SQLiteDatabase db = this.getWritableDatabase();
+//        String sql = "CREATE TABLE IF NOT EXISTS tables (" +
+//                "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+//                "table_number INTEGER UNIQUE, " +
+//                "table_name TEXT)";
+//
+//        db.execSQL(sql); //
+//    }
+
     public void insertTableIfNotExists(int tableNumber, String tableName) {
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM " + STATUS_TABLE + " WHERE table_number=?",

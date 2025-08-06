@@ -14,8 +14,8 @@ import java.util.List;
 
 public class UdpMulticastSender {
 
-    private static final String MULTICAST_IP = "239.0.0.222"; // Reserved multicast IP
-    private static final int PORT = 15000;
+    private static final String MULTICAST_IP = "239.0.0.224"; // Reserved multicast IP
+    private static final int PORT = 15002;
 
     public static void sendTableStatus(Context context) {
         new Thread(() -> {

@@ -8,6 +8,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.foodie.UDP.MulticastReceiver;
+import com.example.foodie.UDP.TableMulticastReceiver;
 import com.example.foodie.UDP.UdpMulticastSender;
 import com.example.foodie.database.MyDatabase;
 
@@ -25,7 +26,8 @@ MyDatabase db;
         password = findViewById(R.id.password);
         loginBtn = findViewById(R.id.login_btn);
         db = new MyDatabase(this);
-
+        //db.mulaTableInsert();
+        new TableMulticastReceiver(this).start();
         new MulticastReceiver(this).start();
         new UdpMulticastSender().sendTableStatus(this);
 

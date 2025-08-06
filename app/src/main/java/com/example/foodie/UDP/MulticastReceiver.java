@@ -78,9 +78,8 @@ public class MulticastReceiver extends Thread {
                 }
             }
 
-            } catch(Exception ex){
-                Log.e("MulticastReceiver", "Error: " + ex.getMessage());
-            }
+        } catch(Exception ex){
+            Log.e("MulticastReceiver", "Error: " + ex.getMessage());
         }
     }
-
+}

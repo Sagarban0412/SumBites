@@ -16,6 +16,7 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.foodie.UDP.UdpMulticastSender;
 import com.example.foodie.database.MyDatabase;
 
 import java.util.List;
@@ -34,7 +35,6 @@ public class TableActivity extends Activity {
 
         db = new MyDatabase(this);
         tableLayout = findViewById(R.id.tableLayout);
-
         // 👇 Add this TextView dynamically before populating table buttons
         LinearLayout rootLayout = findViewById(R.id.rootLayout);  // must match your XML root LinearLayout id
 

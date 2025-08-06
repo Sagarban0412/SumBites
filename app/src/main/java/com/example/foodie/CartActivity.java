@@ -139,6 +139,7 @@ import android.widget.Toast;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
+import com.example.foodie.UDP.UdpMulticastSender;
 import com.example.foodie.database.MyDatabase;
 import com.example.foodie.MenuItem;
 import com.example.foodie.CartManager;
@@ -226,6 +227,7 @@ public class CartActivity extends Activity {
         MyListAdapter adapter = new MyListAdapter(this, names, qtys, rates, totals);
         cartList.setAdapter(adapter);
 
+
         placeOrder.setOnClickListener(e -> {
             if (cartItems.isEmpty()) {
                 Toast.makeText(this, "Cart is empty", Toast.LENGTH_SHORT).show();
@@ -251,7 +253,7 @@ public class CartActivity extends Activity {
 
             Toast.makeText(this, "Order placed for table " + tableNumber, Toast.LENGTH_SHORT).show();
             showOrderNotification();
-
+            UdpMulticastSender.sendTableStatus(this);
             finish(); // Go back to menu
         });
     }
