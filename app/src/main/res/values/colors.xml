@@ -11,11 +11,19 @@
     <color name="md_theme_background">#FFFFFF</color>
     <color name="background_light_gray">#F4F4F4</color>
     <color name="light_stroke_gray">#DDDDDD</color>
-        <color name="gray_background">#E0E0E0</color>
-        <color name="gray_card">#F5F5F5</color>
-        <color name="gray_border">#CCCCCC</color>
-        <color name="button_gray">#BDBDBD</color>
-        <color name="text_dark">#212121</color>
+    <color name="gray_background">#E0E0E0</color>
+    <color name="gray_card">#F5F5F5</color>
+    <color name="gray_border">#CCCCCC</color>
+    <color name="button_gray">#BDBDBD</color>
+    <color name="text_dark">#212121</color>
+    <color name="colorPrimary">#3F51B5</color> <!-- Indigo -->
+    <color name="colorPrimaryVariant">#303F9F</color>
+    <color name="colorOnPrimary">#FFFFFF</color>
+    <color name="colorBackground">#FAFAFA</color>
+    <color name="colorSurface">#FFFFFF</color>
+    <color name="colorOnSurface">#333333</color>
+    <color name="colorStroke">#3F51B5</color>
+
 
 
 </resources>

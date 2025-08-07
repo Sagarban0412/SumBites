@@ -8,6 +8,12 @@
     <style name="heading" parent="Theme.AppCompat.DayNight.NoActionBar">
         <item name="android:fontFamily">@font/limelight_regular</item>
     </style>
+    <style name="Theme.YourApp" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryVariant">@color/colorPrimaryVariant</item>
+        <item name="colorOnPrimary">@color/colorOnPrimary</item>
+        <item name="colorOnSurface">@color/colorOnSurface</item>
+    </style>
 
 
 
