@@ -50,6 +50,7 @@ public class MulticastReceiver extends Thread {
                     String name = obj.getString("Name");
                     double price = obj.getDouble("Price");
                     int Cid = obj.getInt("CategoryID");
+                    int p_id = obj.getInt("ID");
                     String category;
                     if (Cid == 0) {
                         category = "All";
@@ -66,7 +67,7 @@ public class MulticastReceiver extends Thread {
                     MyDatabase db = new MyDatabase(context);
 //                    Log.d("Items", "run:"+name+" "+price+" "+ category);
                     // Call your insertItem method
-                    db.remoteInsertItem(name, price, category);
+                    db.remoteInsertItem(name, price, category,p_id);
 
 
                     Gson gson = new Gson();

@@ -7,8 +7,7 @@ public class CartManager {
     private static CartManager instance;
     private final List<MenuItem> cartItems = new ArrayList<>();
 
-    private CartManager() {
-    }
+    private CartManager() {}
 
     public static CartManager getInstance() {
         if (instance == null) {
@@ -18,24 +17,21 @@ public class CartManager {
     }
 
     public void addToCart(MenuItem item) {
-        // Check if already in cart and update quantity instead
         for (MenuItem cartItem : cartItems) {
-            if (cartItem.getName().equals(item.getName())) {
+            if (cartItem.getP_id() == item.getP_id() && cartItem.getTableNumber() == item.getTableNumber()) {
                 cartItem.setQuantity(cartItem.getQuantity() + item.getQuantity());
                 return;
             }
         }
-        cartItems.add(new MenuItem(item)); // Clone or add directly
+
+        cartItems.add(new MenuItem(item)); // copy constructor
     }
 
     public List<MenuItem> getCartItems() {
-        return cartItems;
+        return new ArrayList<>(cartItems); // to avoid modification outside
     }
 
     public void clearCart() {
-        for (MenuItem item : cartItems) {
-            item.setQuantity(0); // Reset quantity
-        }
         cartItems.clear();
     }
 
@@ -46,5 +42,4 @@ public class CartManager {
         }
         return total;
     }
-
 }

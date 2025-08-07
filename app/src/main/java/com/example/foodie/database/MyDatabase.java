@@ -16,7 +16,7 @@ import java.util.Set;
 
 public class MyDatabase extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "SumBytes";
-    private static final int DATABASE_VERSION = 11;
+    private static final int DATABASE_VERSION = 12;
 
     // order_item table
     public static final String ORDER_TABLE = "order_item";
@@ -39,6 +39,7 @@ public class MyDatabase extends SQLiteOpenHelper {
     public static final String MENU_NAME = "name";
     public static final String MENU_PRICE = "price";
     public static final String MENU_CATEGORY = "category";
+    public static final String MENU_PID = "p_id";
 
 //    Status Table
 
@@ -70,7 +71,9 @@ public class MyDatabase extends SQLiteOpenHelper {
                 MENU_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 MENU_NAME + " TEXT, " +
                 MENU_PRICE + " REAL, " +
-                MENU_CATEGORY + " TEXT)";
+                MENU_CATEGORY + " TEXT, " +
+                MENU_PID + " INTEGER NOT NULL DEFAULT 0" +
+                ")";
         db.execSQL(createMenuTable);
 
         String createTableStatus = "CREATE TABLE IF NOT EXISTS "+STATUS_TABLE+"("+
@@ -103,22 +106,24 @@ public class MyDatabase extends SQLiteOpenHelper {
     }
 
     // Add an item to order_item
-    public void insertItem(String name, int quantity, double price, int tableNumber) {
+    public void insertItem(String name, int quantity, double price, int tableNumber,int p_id) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
         cv.put(COLUMN_NAME, name);
         cv.put(COLUMN_QUANTITY, quantity);
         cv.put(COLUMN_PRICE, price);
         cv.put(COLUMN_TABLE_NUMBER, tableNumber);
+        cv.put(MENU_PID, p_id);
         db.insert(ORDER_TABLE, null, cv);
     }
 
-    public void remoteInsertItem(String name, double price,String category) {
+    public void remoteInsertItem(String name, double price,String category, int p_id) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
         cv.put(COLUMN_NAME, name);
         cv.put(COLUMN_PRICE, price);
         cv.put(COLUMN_CATEGORY,category);
+        cv.put("p_id",p_id);
         db.insert(MENU_TABLE, null, cv);
     }
 
@@ -213,7 +218,8 @@ public class MyDatabase extends SQLiteOpenHelper {
             do {
                 String name = cursor.getString(cursor.getColumnIndexOrThrow(MENU_NAME));
                 double price = cursor.getDouble(cursor.getColumnIndexOrThrow(MENU_PRICE));
-                list.add(new MenuItem(name, price));  // using your MenuItem class
+                int p_id = cursor.getInt(cursor.getColumnIndexOrThrow(MENU_PID));
+                list.add(new MenuItem(name,price,p_id));
             } while (cursor.moveToNext());
         }
         cursor.close();
@@ -229,7 +235,8 @@ public class MyDatabase extends SQLiteOpenHelper {
             do {
                 String name = cursor.getString(cursor.getColumnIndexOrThrow(MENU_NAME));
                 double price = cursor.getDouble(cursor.getColumnIndexOrThrow(MENU_PRICE));
-                list.add(new MenuItem(name,price));
+                int p_id = cursor.getInt(cursor.getColumnIndexOrThrow(MENU_PID));
+                list.add(new MenuItem(name,price,p_id));
             }while(cursor.moveToNext());
         }
         cursor.close();
@@ -278,16 +285,17 @@ public class MyDatabase extends SQLiteOpenHelper {
     }
 
     //method for tables
-    public void insertDefaultTables() {
-        SQLiteDatabase db = this.getWritableDatabase();
-        String[] names = {"Table 1", "Table 2", "Table 3", "Table 4", "Table 5", "Table 6", "Table 7", "VIP"};
-        for (int i = 0; i < names.length; i++) {
-            ContentValues values = new ContentValues();
-            values.put("table_number", i + 1);
-            values.put("table_name", names[i]);
-            db.insertWithOnConflict("tables", null, values, SQLiteDatabase.CONFLICT_IGNORE);
-        }
-    }
+//    public void insertDefaultTables() {
+//        SQLiteDatabase db = this.getWritableDatabase();
+//        String[] names = {"Table 1", "Table 2", "Table 3", "Table 4", "Table 5", "Table 6", "Table 7", "VIP"};
+//        for (int i = 0; i < names.length; i++) {
+//            ContentValues values = new ContentValues();
+//            values.put("table_number", i + 1);
+//            values.put("table_name", names[i]);
+//            db.insertWithOnConflict("tables", null, values, SQLiteDatabase.CONFLICT_IGNORE);
+//        }
+//    }
+
 
 //    public void mulaTableInsert() {
 //        SQLiteDatabase db = this.getWritableDatabase();

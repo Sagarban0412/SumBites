@@ -2,24 +2,28 @@ package com.example.foodie;
 
 public class MenuItem {
     private String name;
+    private int p_id;
+
     private double price;
     private int quantity;
     private int tableNumber; // 👈 NEW field to track which table the item belongs to
 
     // Regular constructor
-    public MenuItem(String name, double price) {
+    public MenuItem(String name, double price, int p_id) {
         this.name = name;
         this.price = price;
         this.quantity = 0; // Default quantity
         this.tableNumber = -1; // Default invalid table
+        this.p_id = p_id;
     }
 
     // Copy constructor
-    public MenuItem(MenuItem item) {
-        this.name = item.name;
-        this.price = item.price;
-        this.quantity = item.quantity;
-        this.tableNumber = item.tableNumber;
+    public MenuItem(MenuItem other) {
+        this.name = other.name;
+        this.price = other.price;
+        this.quantity = other.quantity;
+        this.p_id = other.p_id;
+        this.tableNumber = other.tableNumber;
     }
 
     // Getters and setters
@@ -45,5 +49,9 @@ public class MenuItem {
 
     public void setTableNumber(int tableNumber) {
         this.tableNumber = tableNumber;
+    }
+
+    public int getP_id() {
+        return p_id;
     }
 }

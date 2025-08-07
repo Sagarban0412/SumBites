@@ -31,6 +31,8 @@ MyDatabase db;
         new MulticastReceiver(this).start();
         new UdpMulticastSender().sendTableStatus(this);
 
+
+//        db.insertDefaultTables();
         loginBtn.setOnClickListener(v -> {
             String user = username.getText().toString().trim();
             String pass = password.getText().toString().trim();
