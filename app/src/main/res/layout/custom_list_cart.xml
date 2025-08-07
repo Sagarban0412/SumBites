@@ -1,45 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:id="@+id/column"
-    android:orientation="horizontal"
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/column"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
     android:weightSum="4"
-    >
+    android:paddingVertical="8dp">
+
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Name"
-        android:layout_weight="1"
-        android:textSize="15dp"
         android:id="@+id/name"
-        android:layout_gravity="center"
-        />
-    <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Quantity"
         android:layout_weight="1"
-        android:textSize="15dp"
+        android:maxWidth="120dp"
+        android:text="Name"
+        android:textSize="15sp"
+        android:textColor="#444444"
+        android:gravity="center"
+        android:paddingHorizontal="8dp" />
+
+    <TextView
         android:id="@+id/qty"
-        android:layout_gravity="center"
-        />
-    <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Rate"
         android:layout_weight="1"
-        android:textSize="15dp"
+        android:maxWidth="80dp"
+        android:text="Quantity"
+        android:textSize="15sp"
+        android:textColor="#444444"
+        android:gravity="center"
+        android:paddingHorizontal="8dp" />
+
+    <TextView
         android:id="@+id/rate"
-        android:layout_gravity="center"
-        />
-    <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Total"
         android:layout_weight="1"
-        android:textSize="15dp"
+        android:maxWidth="80dp"
+        android:text="Rate"
+        android:textSize="15sp"
+        android:textColor="#444444"
+        android:gravity="center"
+        android:paddingHorizontal="8dp" />
+
+    <TextView
         android:id="@+id/total"
-        android:layout_gravity="center"
-        />
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:maxWidth="100dp"
+        android:text="Total"
+        android:textSize="15sp"
+        android:textColor="#444444"
+        android:gravity="center"
+        android:paddingHorizontal="8dp" />
 </LinearLayout>

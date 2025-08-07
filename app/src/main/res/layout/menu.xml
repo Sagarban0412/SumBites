@@ -5,74 +5,124 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp"
-    android:background="#FFFFFF">
+    android:background="@color/background_light_gray"
+    android:padding="16dp">
 
-    <!-- Table Number Display -->
+    <!-- Table Number -->
     <TextView
         android:id="@+id/table"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Table"
-        android:gravity="center"
-        android:textSize="24sp"
+        android:textSize="26sp"
         android:textStyle="bold"
-        android:textColor="#333333"
+        android:textColor="#1A1A1A"
+        android:gravity="center"
+        android:fontFamily="@font/limelight_regular"
         android:paddingBottom="12dp" />
 
-    <!-- Category Buttons at Top -->
+    <!-- Category Buttons -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:gravity="center"
         android:weightSum="4"
-        android:layout_marginBottom="16dp"
-        android:padding="6dp"
-        android:background="#EEEEEE"
-        android:elevation="2dp">
+        android:gravity="center"
+        android:layout_marginBottom="16dp">
 
-        <ImageView
+        <!-- Food Button -->
+        <com.google.android.material.card.MaterialCardView
             android:id="@+id/btn_food"
             android:layout_width="0dp"
-            android:layout_height="64dp"
+            android:layout_height="72dp"
             android:layout_weight="1"
-            android:src="@drawable/food"
-            android:padding="10dp"
-            android:background="@drawable/bg_circle_white"
-            android:contentDescription="Food" />
+            app:cardCornerRadius="50dp"
+            app:cardElevation="2dp"
+            app:strokeColor="@color/light_stroke_gray"
+            app:strokeWidth="1dp"
+            android:layout_marginEnd="6dp"
+            android:clickable="true"
+            android:focusable="true">
 
-        <ImageView
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="16dp"
+                android:src="@drawable/food"
+                android:contentDescription="Food"
+                android:scaleType="centerInside"/>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Drink Button -->
+        <com.google.android.material.card.MaterialCardView
             android:id="@+id/btn_drink"
             android:layout_width="0dp"
-            android:layout_height="64dp"
+            android:layout_height="72dp"
             android:layout_weight="1"
-            android:src="@drawable/cheers"
-            android:padding="10dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:background="@drawable/bg_circle_white"
-            android:contentDescription="Drink" />
+            app:cardCornerRadius="50dp"
+            app:cardElevation="2dp"
+            app:strokeColor="@color/light_stroke_gray"
+            app:strokeWidth="1dp"
+            android:layout_marginStart="6dp"
+            android:layout_marginEnd="6dp"
+            android:clickable="true"
+            android:focusable="true">
 
-        <ImageView
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="16dp"
+                android:src="@drawable/cheers"
+                android:contentDescription="Drink"
+                android:scaleType="centerInside"/>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Smoke Button -->
+        <com.google.android.material.card.MaterialCardView
             android:id="@+id/btn_smoke"
             android:layout_width="0dp"
-            android:layout_height="64dp"
+            android:layout_height="72dp"
             android:layout_weight="1"
-            android:src="@drawable/cigarrete"
-            android:padding="10dp"
-            android:background="@drawable/bg_circle_white"
-            android:contentDescription="Smoke" />
+            app:cardCornerRadius="50dp"
+            app:cardElevation="2dp"
+            app:strokeColor="@color/light_stroke_gray"
+            app:strokeWidth="1dp"
+            android:layout_marginStart="6dp"
+            android:layout_marginEnd="6dp"
+            android:clickable="true"
+            android:focusable="true">
 
-        <ImageView
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="16dp"
+                android:src="@drawable/cigarrete"
+                android:contentDescription="Smoke"
+                android:scaleType="centerInside"/>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Special Button -->
+        <com.google.android.material.card.MaterialCardView
             android:id="@+id/btn_special"
             android:layout_width="0dp"
-            android:layout_height="64dp"
+            android:layout_height="72dp"
             android:layout_weight="1"
-            android:src="@drawable/special"
-            android:padding="10dp"
-            android:background="@drawable/bg_circle_white"
-            android:contentDescription="Special" />
+            app:cardCornerRadius="50dp"
+            app:cardElevation="2dp"
+            app:strokeColor="@color/light_stroke_gray"
+            app:strokeWidth="1dp"
+            android:layout_marginStart="6dp"
+            android:clickable="true"
+            android:focusable="true">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="16dp"
+                android:src="@drawable/special"
+                android:contentDescription="Special"
+                android:scaleType="centerInside"/>
+        </com.google.android.material.card.MaterialCardView>
     </LinearLayout>
 
     <!-- Fragment Container -->
@@ -81,28 +131,30 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:background="#F8F8F8"
-        android:elevation="4dp" />
+        android:background="@color/white"
+        android:elevation="1dp"
+        android:layout_marginBottom="12dp"
+        android:clipToOutline="true"/>
 
     <!-- View Cart Button -->
     <com.google.android.material.button.MaterialButton
         android:id="@+id/view_cart_button"
-        android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:text="View Order"
         android:textAllCaps="false"
         android:textSize="16sp"
         android:textStyle="bold"
         android:textColor="@android:color/white"
-        android:backgroundTint="@color/teal_700"
-        android:insetTop="8dp"
-        android:insetBottom="8dp"
+        android:insetTop="10dp"
+        android:insetBottom="10dp"
         android:elevation="6dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginBottom="12dp"
+        android:backgroundTint="@color/teal_700"
+        app:cornerRadius="20dp"
         app:icon="@drawable/ic_cart"
-        app:iconGravity="textStart"
         app:iconPadding="8dp"
-        app:iconTint="@android:color/white" />
+        app:iconTint="@android:color/white"
+        app:iconGravity="textStart"
+        android:layout_marginBottom="8dp"/>
 </LinearLayout>
