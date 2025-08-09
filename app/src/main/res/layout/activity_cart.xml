@@ -88,7 +88,7 @@
         </androidx.cardview.widget.CardView>
 
         <!-- Cart List -->
-        <androidx.recyclerview.widget.RecyclerView
+        <ListView
             android:id="@+id/cartList"
             android:layout_width="match_parent"
             android:layout_height="418dp"

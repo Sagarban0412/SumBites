@@ -7,6 +7,8 @@ appcompat = "1.7.0"
 material = "1.12.0"
 gson = "2.10.1"
 playServicesAnalyticsImpl = "18.2.0"  # or latest
+glide = "4.16.0"
+
 
 [libraries]
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -17,6 +19,9 @@ material = { group = "com.google.android.material", name = "material", version.r
 volley = { group = "com.android.volley", name = "volley", version = "1.2.1" }
 gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
 play-services-analytics-impl = { group = "com.google.android.gms", name = "play-services-analytics-impl", version.ref = "playServicesAnalyticsImpl" }
+
+glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
+glideCompiler = { module = "com.github.bumptech.glide:compiler", version.ref = "glide" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

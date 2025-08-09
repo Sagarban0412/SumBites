@@ -32,6 +32,10 @@ MyDatabase db;
         new UdpMulticastSender().sendTableStatus(this);
 
 
+        //adding table in database by hardcoded
+        db.insertDefaultTables();
+
+
 //        db.insertDefaultTables();
         loginBtn.setOnClickListener(v -> {
             String user = username.getText().toString().trim();

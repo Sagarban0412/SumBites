@@ -284,17 +284,17 @@ public class MyDatabase extends SQLiteOpenHelper {
         db.close();
     }
 
-    //method for tables
-//    public void insertDefaultTables() {
-//        SQLiteDatabase db = this.getWritableDatabase();
-//        String[] names = {"Table 1", "Table 2", "Table 3", "Table 4", "Table 5", "Table 6", "Table 7", "VIP"};
-//        for (int i = 0; i < names.length; i++) {
-//            ContentValues values = new ContentValues();
-//            values.put("table_number", i + 1);
-//            values.put("table_name", names[i]);
-//            db.insertWithOnConflict("tables", null, values, SQLiteDatabase.CONFLICT_IGNORE);
-//        }
-//    }
+//    method for tables
+    public void insertDefaultTables() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String[] names = {"Table 1", "Table 2", "Table 3", "Table 4", "Table 5", "Table 6", "Table 7", "VIP"};
+        for (int i = 0; i < names.length; i++) {
+            ContentValues values = new ContentValues();
+            values.put("table_number", i + 1);
+            values.put("table_name", names[i]);
+            db.insertWithOnConflict("tables", null, values, SQLiteDatabase.CONFLICT_IGNORE);
+        }
+    }
 
 
 //    public void mulaTableInsert() {

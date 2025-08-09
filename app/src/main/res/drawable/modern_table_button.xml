@@ -1,0 +1,12 @@
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="#33FFFFFF">
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="#1F1F1F" /> <!-- Button background -->
+            <corners android:radius="16dp" />
+            <stroke
+                android:width="2dp"
+                android:color="#00E5FF" /> <!-- Neon accent -->
+        </shape>
+    </item>
+</ripple>
