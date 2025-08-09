@@ -62,7 +62,7 @@ public class MenuActivity extends AppCompatActivity {
         Bundle args = new Bundle();
         args.putInt("table_number", tableNumber);
         fragment.setArguments(args);
-        CartManager.getInstance().clearCart();
+//        CartManager.getInstance().clearCart();
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragment_container, fragment)
                 .commit();

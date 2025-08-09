@@ -98,6 +98,7 @@ public class TableActivity extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
+        CartManager.getInstance().clearCart();
         if (loadingOverlay.getVisibility() == View.GONE) {
             loadTableButtonsDynamic();
         }
